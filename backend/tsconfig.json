@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                 // Versão do JS para compilar
+    "module": "CommonJS",               // Módulo para Node.js
+    "rootDir": "./src",                 // Pasta raiz do código fonte
+    "outDir": "./dist",                 // Pasta de saída compilada (se fizer build)
+    "esModuleInterop": true,            // Compatibilidade com imports CommonJS
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,                    // Ativa várias verificações rigorosas
+    "skipLibCheck": true,              // Pula checagem de tipos em node_modules
+    "moduleResolution": "node",
+    "resolveJsonModule": true,         // Importar JSON
+    "sourceMap": true                  // Gera sourcemaps para debug
+  },
+  "include": ["src/**/*"],             // Inclui todos arquivos TS em src
+  "exclude": ["node_modules", "dist"]  // Exclui node_modules e dist
+}
