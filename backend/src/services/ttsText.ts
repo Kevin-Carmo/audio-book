@@ -3,7 +3,10 @@ import fs from 'fs/promises'
 import path from 'path'
 import { normalizeTextForTTS, splitTextByLength } from '../util/Upload'
 
-const UPLOAD_DIR = process.env.UPLOAD_DIR || path.resolve(__dirname, '..', '..', 'uploads')
+const UPLOAD_DIR = process.env.UPLOAD_DIR
+  ? path.resolve(process.env.UPLOAD_DIR)
+  : path.resolve(__dirname, '..', '..', 'uploads')
+
 const PDF_CHUNK_SIZE = (() => {
   const chunkSizeEnv = process.env.PDF_CHUNK_SIZE
   const parsed = parseInt(chunkSizeEnv || '', 10)
@@ -15,7 +18,10 @@ export class TtsTextProcessor {
     const cleanText = normalizeTextForTTS(rawText)
     const chunks = splitTextByLength(cleanText, PDF_CHUNK_SIZE)
 
-    const chunksDir = path.resolve(UPLOAD_DIR, 'tts_chunks')
+    const chunksDir = process.env.TTS_CHUNKS_DIR
+      ? path.resolve(process.env.TTS_CHUNKS_DIR)
+      : path.resolve(UPLOAD_DIR, 'tts_chunks')
+
     await fs.mkdir(chunksDir, { recursive: true })
 
     const chunkFiles: string[] = []
