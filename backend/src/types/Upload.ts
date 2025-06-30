@@ -14,3 +14,16 @@ export type UploadInput = {
   path: string;
 };
 
+export interface IPdfParser {
+  parse(buffer: Buffer): Promise<string>;
+}
+
+export type ConvertOutput = {
+  error?: number;            
+  message: string;          
+  text?: string;             
+  chunks?: string[];         
+  totalChunks?: number;      
+  chunkFiles?: string[];     
+};
+
