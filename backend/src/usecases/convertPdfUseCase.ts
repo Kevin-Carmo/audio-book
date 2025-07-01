@@ -17,7 +17,7 @@ export class ConvertPdfUseCase {
     this.processor = new TtsTextProcessor()
   }
 
-  async execute({ filename }: ConvertPdfDTO): Promise<ConvertOutput & { chunkFiles?: string[] }> {
+  async execute({ filename }: ConvertPdfDTO): Promise<ConvertOutput> {
     if (!filename) {
       return { error: 400, message: 'Filename is required' }
     }
